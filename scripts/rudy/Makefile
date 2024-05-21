@@ -1,6 +1,7 @@
 
 all: clean gset
 
+.PHONY: gset
 gset: rudy graphs
 	./rudy -rnd_graph 800 6 8001 > graphs/g01.in
 	./rudy -rnd_graph 800 6 8002 > graphs/g02.in
@@ -69,10 +70,17 @@ gb_lib.c:
 graphs:
 	mkdir graphs
 
-clean:
-	rm -rf graphs
+test_graphs: rudy
+	mkdir test_graphs
+	./rudy -clique 5 -random 0 1 51 -times 2 -plus -1 > test_graphs/complete_5.in
+
+.PHONY: mostlyclean
+mostlyclean:
+	rm -rf gset
+	rm -rf test_graphs
 	rm -rf rudy
 
-veryclean: clean
+.PHONY: clean
+clean: mostlyclean
 	rm -rf *.c
 	

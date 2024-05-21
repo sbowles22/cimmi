@@ -9,3 +9,6 @@ cimmi:
 
 clean:
 	rm -rf $(BUILD_FILES)
+
+test:
+	python3 main.py

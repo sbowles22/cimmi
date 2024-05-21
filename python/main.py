@@ -1,4 +1,6 @@
 import cimmi
 
-test = cimmi.simulator(12)
-print(test.get_x())
+s = cimmi.simulator(5)
+print(s.get_x())
+
+g = cimmi.Graph.read_from_file('../scripts/rudy/test_graphs/complete_5.in')

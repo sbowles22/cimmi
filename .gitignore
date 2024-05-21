@@ -39,3 +39,4 @@ scripts/rudy/gb_lib.c
 scripts/rudy/rudy
 scripts/rudy/rudy.c
 scripts/rudy/graphs/*
+.vscode/settings.json

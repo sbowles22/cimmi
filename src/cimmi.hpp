@@ -18,20 +18,6 @@ public:
     int get_x();
 };
 
-simulator::simulator(int x)
-{
-    num = x; 
-}
-
-simulator::~simulator()
-{
-    std::cout << "goodbye!\n";
-}
-
-int simulator::get_x() {
-    return num;
-}
-
 } // namespace cimmi
 
 #endif

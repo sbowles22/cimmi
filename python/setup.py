@@ -4,11 +4,17 @@
 setup.py file for SWIG
 """
 
+import os
 from distutils.core import setup, Extension
 
+SRC_DIR = '../src/'
+sources = ['cimmi_wrap.cxx']
+for file in os.listdir(SRC_DIR):
+       if file.endswith(".cpp"):
+              sources.append(SRC_DIR + file)   
 
 cimmi_module = Extension('_cimmi',
-                           sources=['cimmi_wrap.cxx'],
+                           sources=sources,
                            )
 
 setup (name = 'cimmi',

@@ -3,7 +3,10 @@
 /* Includes the header in the wrapper code */
 #define SWIG_FILE_WITH_INIT
 #include "../src/cimmi.hpp"
+#include "../src/graph.hpp"
+
 %}
 
 /* Parse the header file to generate wrappers */
 %include "../src/cimmi.hpp"
+%include "../src/graph.hpp"
