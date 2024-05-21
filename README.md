@@ -7,11 +7,12 @@ CIMMI uses the rudy graph generator and the Gset for its testing. To generate th
 
 ## Todo
 
-1. Kramer Moyal (Vidisha)
-2. Random Number Generation (Spencer)
-3. Euler Maruyama (Spencer)
-4. Simulator Object (Spencer)
-5. Logging (?)
-6. Graph Generation (Spencer, Done)
-    - Importing (?)
-    - Problem Conversion (Vidisha)
+- [ ] Kramer Moyal (Vidisha)
+- [ ] Random Number Generation (Spencer)
+- [ ] Euler Maruyama (Spencer)
+- [ ] Simulator Object (Spencer)
+- [ ] Logging (?)
+- [ ] Graphs 
+    - [X] Rudy Generation (Spencer)
+    - [X] Importing (Spencer)
+    - [ ] Problem Conversion (Vidisha)
