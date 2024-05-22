@@ -72,6 +72,7 @@ graphs:
 
 test_graphs: rudy
 	mkdir test_graphs
+	./rudy -clique 2 -random 1 1 51 -times 2 -plus -1 > test_graphs/complete_2.in
 	./rudy -clique 5 -random 0 1 51 -times 2 -plus -1 > test_graphs/complete_5.in
 
 .PHONY: mostlyclean

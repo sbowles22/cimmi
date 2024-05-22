@@ -1,5 +1,19 @@
 {
     "files.associations": {
-        "cimmi.hpp": "c"
+        "cimmi.hpp": "c",
+        "iomanip": "cpp",
+        "iostream": "cpp",
+        "ostream": "cpp",
+        "fstream": "cpp",
+        "array": "cpp",
+        "bitset": "cpp",
+        "string_view": "cpp",
+        "initializer_list": "cpp",
+        "ranges": "cpp",
+        "utility": "cpp",
+        "*.tcc": "cpp",
+        "graph.hpp": "c",
+        "utils.hpp": "c",
+        "new": "cpp"
     }
 }

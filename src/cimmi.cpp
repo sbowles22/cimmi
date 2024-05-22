@@ -1,6 +1,4 @@
 
-#ifndef FILE_CIMMI
-#define FILE_CIMMI
 
 #include <iostream>
 #include <iomanip>
@@ -20,5 +18,3 @@ cimmi::simulator::~simulator()
 int cimmi::simulator::get_x() {
     return num;
 }
-
-#endif

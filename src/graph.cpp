@@ -1,31 +1,13 @@
+
 #include <fstream>
 #include <iostream>
 
+#include "utils.hpp"
 #include "graph.hpp"
 
 using namespace std;
 using namespace cimmi::graph;
-
-template <typename T> 
-Matrix<T>::Matrix() {}
-
-template <typename T> 
-Matrix<T>::Matrix(int size)
-{
-    this -> size = size;
-    _matrix = new short*[size];
-    for (int i = 0; i < size; i++) {
-        _matrix[i] = new short[size];
-    }
-}
-
-template <typename T> 
-Matrix<T>::~Matrix() {}
-
-template <typename T> 
-T* Matrix<T>::operator[](int i) {
-    return _matrix[i];
-}
+using namespace cimmi::utils;
 
 Graph::Graph() {}
 

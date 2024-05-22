@@ -4,6 +4,7 @@
 
 #include <iostream>
 #include <iomanip>
+#include "utils.hpp"
 
 namespace cimmi
 {
