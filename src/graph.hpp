@@ -22,10 +22,12 @@ public:
     ~Graph();
     Graph(int size);
 
+    int get_size();
+
     void set_edge(int x, int y, short w);
     short get_edge(int x, int y);
 
-    static Graph read_from_file(const char* filename);
+    static Graph* read_from_file(const char* filename);
     void print();
 };
 

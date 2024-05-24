@@ -17,6 +17,10 @@ Graph::Graph(int size) {
 
 Graph::~Graph() {}
 
+int Graph::get_size() {
+    return edges.size;
+}
+
 void Graph::set_edge(int x, int y, short w) {
     edges[x][y] = w;
 }
@@ -25,9 +29,9 @@ short Graph::get_edge(int x, int y) {
     return edges[x][y];
 }
 
-Graph Graph::read_from_file(const char* filename) {
+Graph* Graph::read_from_file(const char* filename) {
     cout << "Reading... " << filename << endl; 
-    Graph g;
+    Graph* g;
     
     fstream f;
     f.open(filename);
@@ -38,11 +42,11 @@ Graph Graph::read_from_file(const char* filename) {
 
     f >> nodes >> edge_num;
     cout << nodes << endl;
-    g = Graph(nodes);
+    g = new Graph(nodes);
     cout << "Done Creating" << endl;
     for (int i = 0; i < nodes; i++) {
         for (int j = 0; j < nodes; j++) {
-            g.set_edge(i, j, 0);
+            g -> set_edge(i, j, 0);
         }
     }
     cout << "Edges set to 0" << endl;
@@ -50,12 +54,12 @@ Graph Graph::read_from_file(const char* filename) {
     for (int i = 0; i < edge_num; i++) {
         f >> x >> y >> w;
         cout << "X: " << x << ", Y: " << y << ", W: " << w << endl;
-        g.set_edge(x - 1, y - 1, w);
-        g.set_edge(y - 1, x - 1, w);
+        g -> set_edge(x - 1, y - 1, w);
+        g -> set_edge(y - 1, x - 1, w);
     }
 
     cout << "Starting Printing" << endl;
-    g.print();
+    g -> print();
     cout << "Done Printing" << endl;
     return g;
 }

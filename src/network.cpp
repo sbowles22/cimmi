@@ -29,14 +29,16 @@ Network::Network() {}
 Network::~Network() {}
 
 Network::Network(int size) {
+    this -> resize(size);
+}
+
+void Network::resize(int size) {
     this -> size = size;
     s_phase = new float[size];
     c_phase = new float[size];
     ds_phase = new float[size];
     dc_phase = new float[size];
     couplings = Matrix<float>(size);
-    
-    // this->restart();
 }
 
 void Network::disp() {
@@ -56,26 +58,56 @@ void Network::disp() {
         }
         cout << endl;
     }
-}
 
-// Network Topology Functions
-void Network::set_source(Graph& g) {
-    source = &g;
-    // TODO: add check for g size is network size
-
-    switch (problem)
-    {
-    case MAX_CUT:
-        map_max_cut(*source, *this);
-        break;
-    
-    default: break;
+    printf("\nReadout:\n");
+    for (int ix = 0; ix < size; ix++) {
+        printf("%02d: %+e %+e\n", ix, c_phase[ix], s_phase[ix]);
     }
 }
 
-void Network::set_problem(problem_t problem) {
-    problem = problem;
+// Network Calculation Functions
+void Network::kraymer_moyal() {
+    pump_rate = this -> get_pump_rate();
+
+    for (int ix = 0; ix < size; ix++) {
+        dc_phase[ix] = 0.0;
+        ds_phase[ix] = 0.0;
+    }
+
+    // #pragma omp parallel for schedule(dynamic, 50)
+    for (int ix = 0; ix < size; ix++) {
+        dc_phase[ix] += (-1 + pump_rate - (c_phase[ix]*c_phase[ix] + s_phase[ix]*s_phase[ix])) * c_phase[ix];
+        for (int iy = 0; iy < size; iy++) {
+            dc_phase[ix] += (couplings)[ix][iy] * c_phase[iy];
+        }
+    }
+
+    // #pragma omp parallel for schedule(dynamic, 50)
+    for (int ix = 0; ix < size; ix++) {
+        ds_phase[ix] += (-1 - pump_rate - (c_phase[ix]*c_phase[ix] + s_phase[ix]*s_phase[ix])) * s_phase[ix];
+        for (int iy = 0; iy < size; iy++) {
+            ds_phase[ix] += (couplings)[ix][iy] * s_phase[iy];
+        }
+    }
 }
+
+void Network::euler_maruyama() {
+    for (int ix = 0; ix < size; ix++) {
+        c_phase[ix] += dc_phase[ix] * step_size + noise_magnitude * normal(rng);
+        s_phase[ix] += ds_phase[ix] * step_size + noise_magnitude * normal(rng);
+    }
+}
+
+// Network Topology Functions
+void Network::set_source(Graph* g) {
+    source = g;
+    // TODO: add check for g size is network size
+}
+
+void Network::set_problem(Problem p) {
+    problem = p;
+}
+
 int Network::get_size() {
     return size;
 }
@@ -101,9 +133,13 @@ void Network::set_pump_schedule(float (*f)(float t)) {
     pump_schedule = f;
 }
 
+void Network::set_pump_rate(float p) {
+    pump_rate = p;
+}
+
 float Network::get_pump_rate() {
     if (pump_schedule == NULL) {
-        return 0; // TODO: Float NaN
+        return pump_rate; // TODO: Float NaN
     }
 
     return pump_schedule(time);
@@ -117,7 +153,32 @@ float Network::get_noise_magnitude() {
     return noise_magnitude;
 }
 
+void Network::set_step_size(float h) {
+    step_size = h;
+    normal = std::normal_distribution<float>(0.0, sqrt(h));
+}
+
+
 // Simulator Control Functions
+void Network::configure() {
+    printf("Configuring...\n");
+    this -> resize(source->get_size());
+    
+    switch (problem)
+    {
+    case Problem::MAX_CUT:
+        printf("Mapping %p to %p...\n", source, this);
+        map_max_cut(*source, *this);
+        printf("Mapped %p to %p.\n", source, this);
+        break;
+    
+    default: break;
+    }
+
+    this -> restart();
+    printf("Configured.\n");
+}
+
 void Network::restart() {
     time = 0;
     for (int i = 0; i < size; i++) {
@@ -131,6 +192,14 @@ float Network::get_time() {
 }
 
 void Network::run(float t_final) {
-    // TODO
-    time = t_final;
+    this -> restart();
+    while (time < t_final) {
+        this -> kraymer_moyal();
+        this -> euler_maruyama();
+        time += step_size;
+    }
 }
+
+// Network Readout Functions
+
+// TODO

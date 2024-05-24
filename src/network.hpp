@@ -4,6 +4,7 @@
 
 #include <fstream>
 #include <iostream>
+#include <random>
 #include "utils.hpp"
 #include "graph.hpp"
 
@@ -13,10 +14,10 @@ namespace cimmi::network
 using namespace std;
 // using namespace cimmi::utils;
 
-typedef enum {
-    NONE=0,
-    MAX_CUT=1
-} problem_t;
+enum class Problem
+{
+    NONE=0, MAX_CUT=1
+};
 
 class Network
 {
@@ -29,24 +30,34 @@ private:
     cimmi::utils::Matrix<float> couplings;
 
     int size;
-    cimmi::graph::Graph* source;
+    cimmi::graph::Graph* source = NULL;
 
     float time;
-    problem_t problem;
+    Problem problem;
     
     float coupling_strenth;
-    float (*pump_schedule) (float t);
+    float (*pump_schedule) (float t) = NULL;
     float pump_rate;
     float noise_magnitude;
+
+    void resize(int s);
+
+    float step_size;
+    std::default_random_engine rng;
+    std::normal_distribution<float> normal;
+
+    // Network Calculation Functions
+    void kraymer_moyal();
+    void euler_maruyama();
 public:
     Network();
     ~Network();
-    Network(int size);
+    Network(int s);
     void disp();
 
     // Network Topology Functions
-    void set_source(cimmi::graph::Graph& g);
-    void set_problem(problem_t problem);
+    void set_source(cimmi::graph::Graph* g);
+    void set_problem(Problem p);
     int get_size();
 
     void set_coupling(int x, int y, float w);
@@ -57,12 +68,16 @@ public:
     float get_coupling_strength();
 
     void set_pump_schedule(float (*f)(float t));
+    void set_pump_rate(float p);
     float get_pump_rate();
 
     void set_noise_magnitude(float q);
     float get_noise_magnitude();
 
+    void set_step_size(float h);
+
     // Simulator Control Functions
+    void configure();
     void restart();
     float get_time();
     void run(float t_final);
@@ -73,7 +88,7 @@ public:
 // Problem mapping functions
 void map_max_cut(cimmi::graph::Graph& graph, Network& target);
 
-}
+} // namespace cimmi::network
 
 #endif
 
