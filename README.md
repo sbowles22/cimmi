@@ -7,12 +7,36 @@ CIMMI uses the rudy graph generator and the Gset for its testing. To generate th
 
 ## Todo
 
-- [ ] Kramer Moyal (Vidisha)
-- [ ] Random Number Generation (Spencer)
-- [ ] Euler Maruyama (Spencer)
-- [ ] Simulator Object (Spencer)
+- [ ] Build Process
+    - [X] Initial Build Process (Spencer)
+    - [ ] Setuptools Conversion (Spencer)
+    - [ ] Autotools Makefile.am (?)
+- [ ] Simulator Object
+    - [ ] Initial Object (Spencer)
+    - [ ] Network Readout (?)
+    - [ ] SWIG Interface (?)
+- [ ] Network Object
+    - [X] Initial Object (Spencer)
+    - [ ] Kramer Moyal
+        - [X] Initial Function (Spencer)
+        - [ ] GPU Acceleration (Spencer)
+    - [X] Random Number Generation (Spencer)
+    - [X] Euler Maruyama (Spencer)
+    - [ ] Error Handling (Spencer)
+- [ ] Graph Object 
+    - [X] Initial Object (Spencer)
+    - [ ] Automatic Solution Evaluation (?)
 - [ ] Logging (?)
 - [ ] Graphs 
     - [X] Rudy Generation (Spencer)
     - [X] Importing (Spencer)
     - [ ] Problem Conversion (Vidisha)
+    - [ ] Random Graph Generation (?)
+- [ ] Additional Solvers
+    - [ ] Sahini-Gonzales (?)
+    - [ ] Simulated Annealing (?)
+    - [ ] SNN *Possibly* (?)
+    - [ ] Semidefinite Programming *Possibly* (?)
+- [ ] Python Tests
+    - [ ] 2-OPO Network Evolution .gif (?)
+    - [ ] GSET Evaluations *Later* (?)
