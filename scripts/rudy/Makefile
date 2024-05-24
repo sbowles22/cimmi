@@ -1,5 +1,5 @@
 
-all: clean gset
+all: mostlyclean gset
 
 .PHONY: gset
 gset: rudy graphs

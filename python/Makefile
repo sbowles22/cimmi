@@ -1,5 +1,5 @@
 
-BUILD_FILES = cimmi_wrap.cxx cimmi.py
+BUILD_FILES = build __pycache__ cimmi_wrap.cxx cimmi.py _cimmi.cpython*
 
 all: clean cimmi
 
