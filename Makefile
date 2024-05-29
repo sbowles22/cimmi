@@ -12,6 +12,7 @@ setup: build
 clean:
 	$(MAKE) -C python clean
 	$(MAKE) -C scripts/rudy clean
+	rm -rf main LOGFILE
 
 .PHONY: test
 test: setup
@@ -23,6 +24,7 @@ wc:
 	wc src/*
 
 .PHONY: cpp_test
-cpp_test:
-	g++ src/*.cpp -o main
+cpp_test: build
+	$(MAKE) -C scripts/rudy test_graphs
+	g++ -g src/*.cpp -lfmt -std=c++20 -fopenmp -o main
 	./main

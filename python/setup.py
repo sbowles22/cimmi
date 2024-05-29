@@ -8,13 +8,16 @@ import os
 from distutils.core import setup, Extension
 
 SRC_DIR = '../src/'
-sources = ['cimmi_wrap.cxx']
+sources = []
 for file in os.listdir(SRC_DIR):
        if file.endswith(".cpp"):
-              sources.append(SRC_DIR + file)   
+              sources.append(SRC_DIR + file)  
+sources.append('cimmi_wrap.cxx') 
 
 cimmi_module = Extension('_cimmi',
                            sources=sources,
+                           extra_link_args=['-lfmt'],
+                           extra_compile_args=['-std=c++20', '-fopenmp'],
                            )
 
 setup (name = 'cimmi',
