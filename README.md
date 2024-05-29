@@ -26,7 +26,7 @@ CIMMI uses the rudy graph generator and the Gset for its testing. To generate th
 - [ ] Graph Object 
     - [X] Initial Object (Spencer)
     - [ ] Automatic Solution Evaluation (?)
-- [ ] Logging (?)
+- [X] Logging (Spencer)
 - [ ] Graphs 
     - [X] Rudy Generation (Spencer)
     - [X] Importing (Spencer)
