@@ -21,6 +21,20 @@ void cimmi::network::map_max_cut(Graph& graph, Network& target) {
     }
 }
 
+///////////////////////////////////
+// SOLUTION FUNCTION DEFINITIONS //
+///////////////////////////////////
+
+vector<int> cimmi::network::soln_max_cut(vector<float>& state) {
+    vector<int> soln = vector<int>(state.size());
+
+    for (long unsigned int ix = 0; ix < state.size(); ix++) {
+        soln[ix] = (state[ix] > 0) ? 1 : -1; 
+    }
+
+    return soln;
+}
+
 //////////////////////////////////
 // NETWORK FUNCTION DEFINITIONS //
 //////////////////////////////////
@@ -192,7 +206,6 @@ float Network::get_time() {
 }
 
 void Network::run(float t_final) {
-    this -> restart();
     while (time < t_final) {
         this -> kraymer_moyal();
         this -> euler_maruyama();
@@ -202,4 +215,6 @@ void Network::run(float t_final) {
 
 // Network Readout Functions
 
-// TODO
+vector<float> Network::get_state() {
+    return vector<float>(c_phase, c_phase + size);
+}

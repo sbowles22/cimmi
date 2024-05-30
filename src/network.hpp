@@ -5,6 +5,7 @@
 #include <fstream>
 #include <iostream>
 #include <random>
+#include <vector>
 #include "utils.hpp"
 #include "graph.hpp"
 
@@ -83,10 +84,14 @@ public:
     void run(float t_final);
 
     // Readout functions
+    vector<float> get_state();
 };
 
 // Problem mapping functions
 void map_max_cut(cimmi::graph::Graph& graph, Network& target);
+
+// Problem solution functions
+vector<int> soln_max_cut(vector<float>& state);
 
 } // namespace cimmi::network
 

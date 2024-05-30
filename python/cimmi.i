@@ -1,3 +1,11 @@
+%include "std_vector.i"
+
+namespace std {
+   %template(vectori) vector<int>;
+   %template(vectorf) vector<float>;
+   %template(vectord) vector<double>;
+};
+
 %ignore cimmi::logger;
 %ignore fmt;
 %ignore cimmi::utils::Matrix;

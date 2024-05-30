@@ -4,6 +4,7 @@
 
 #include <fstream>
 #include <iostream>
+#include <vector>
 #include "utils.hpp"
 
 namespace cimmi::graph 
@@ -31,8 +32,11 @@ public:
     void print();
 };
 
+// Evaluation functions
+int eval_max_cut(std::vector<int>& soln, cimmi::graph::Graph& graph);
 
 }
+
 
 #endif
 

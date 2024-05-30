@@ -15,6 +15,11 @@ n.set_source(g)
 n.configure()
 
 n.set_step_size(0.01)
-n.run(10)
+
+for i in range(1,11):
+    n.run(i)
+    state = n.get_state()
+    soln = cimmi.soln_max_cat(state)
+    score = cimmi.eval_max_cut(soln, g)
 
 n.disp()

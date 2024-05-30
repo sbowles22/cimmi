@@ -29,9 +29,9 @@ CIMMI uses the rudy graph generator and the Gset for its testing. To generate th
     - [X] Euler Maruyama (Spencer)
     - [ ] Add transfer function switching (?) 
     - [ ] Error Handling (?)
-- [ ] Graph Object 
+- [X] Graph Object 
     - [X] Initial Object (Spencer)
-    - [ ] Automatic Solution Evaluation (?)
+    - [X] Automatic Solution Evaluation (Spencer)
 - [X] Logging (Spencer)
 - [ ] Graphs 
     - [X] Rudy Generation (Spencer)

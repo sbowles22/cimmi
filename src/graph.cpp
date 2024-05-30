@@ -9,6 +9,28 @@ using namespace std;
 using namespace cimmi::graph;
 using namespace cimmi::utils;
 
+///////////////////////////////
+// Graph Problem Evaluations //
+///////////////////////////////
+
+int cimmi::graph::eval_max_cut(std::vector<int>& soln, cimmi::graph::Graph& graph) {
+    int score = 0;
+    
+    for (long unsigned int s1 = 0; s1 < soln.size(); s1++) {
+        for (long unsigned int s2 = s1 + 1; s2 < soln.size(); s2++) {
+            if (soln[s1] != soln[s2]) {
+                score += graph.get_edge(s1, s2);
+            }
+        }
+    }
+
+    return score;
+}
+
+//////////////////////////////
+// Graph Method Definitions //
+//////////////////////////////
+
 Graph::Graph() {}
 
 Graph::Graph(int size) {
