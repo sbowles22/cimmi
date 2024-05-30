@@ -9,7 +9,7 @@ CIMMI uses the rudy graph generator and the Gset for its testing. To generate th
 
 - [ ] Build Process
     - [X] Initial Build Process (Spencer)
-    - [ ] Setuptools Conversion (Spencer)
+    - [ ] Setuptools Conversion (?)
     - [ ] Autotools Makefile.am (?)
 - [ ] Simulator Object
     - [ ] Initial Object (Spencer)
@@ -27,7 +27,7 @@ CIMMI uses the rudy graph generator and the Gset for its testing. To generate th
         - [ ] GPU Acceleration (Spencer)
     - [X] Random Number Generation (Spencer)
     - [X] Euler Maruyama (Spencer)
-    - [ ] Error Handling (Spencer)
+    - [ ] Error Handling (?)
 - [ ] Graph Object 
     - [X] Initial Object (Spencer)
     - [ ] Automatic Solution Evaluation (?)
