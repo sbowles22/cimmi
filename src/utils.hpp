@@ -53,7 +53,8 @@ T* Matrix<T>::operator[](int i) {
 // Iterable SWIG passthrough wrapper //
 ///////////////////////////////////////
 
-// TODO: Convert to proper iterable type
+// TODO: Convert to proper iterator type
+// https://internalpointers.com/post/writing-custom-iterators-modern-cpp
 
 template <typename T> 
 class Iterable_Wrap
