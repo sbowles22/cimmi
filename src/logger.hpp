@@ -63,8 +63,7 @@ namespace cimmi::logger
     };
 
     extern std::string log_file_name;
-    // extern std::unique_ptr<Logger> g_log;
-    extern Logger* g_log;
+    extern std::unique_ptr<Logger> g_log;
 
     template<typename ...Args>
     void log(Level s, fmt::format_string<Args...> format, Args&&...args) {

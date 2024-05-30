@@ -1,5 +1,6 @@
 
 BUILD_FILES = build __pycache__ cimmi_wrap.cxx cimmi.py _cimmi.cpython*
+RUN_FILES = LOGFILE
 
 all: clean cimmi
 
@@ -9,6 +10,7 @@ cimmi:
 
 clean:
 	rm -rf $(BUILD_FILES)
+	rm -rf $(RUN_FILES)
 
 test:
 	python3 main.py

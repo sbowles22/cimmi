@@ -11,8 +11,7 @@ using namespace std;
 using namespace cimmi::logger;
 
 std::string cimmi::logger::log_file_name = STRINGIFY(LOGFILE);
-// std::unique_ptr<Logger> cimmi::logger::g_log (new Logger(log_file_name));
-Logger* cimmi::logger::g_log (new Logger(log_file_name));
+std::unique_ptr<Logger> cimmi::logger::g_log (new Logger(log_file_name));
 
 Logger::Logger(std::string log_file_name)
 {

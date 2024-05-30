@@ -13,7 +13,12 @@ CIMMI uses the rudy graph generator and the Gset for its testing. To generate th
     - [ ] Autotools Makefile.am (?)
 - [ ] Simulator Object
     - [ ] Initial Object (Spencer)
-    - [ ] Network Readout (?)
+    - [ ] Network Readout
+        - [ ] Iterator Wrapper
+            - [X] Initial Object (Spencer)
+            - [ ] Convert to proper c++ iterator (?)
+            - [ ] Add SWIG Wrapping (?)
+        - [ ] File reporting (?)
     - [ ] SWIG Interface (?)
 - [ ] Network Object
     - [X] Initial Object (Spencer)
