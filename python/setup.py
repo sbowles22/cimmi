@@ -16,7 +16,7 @@ sources.append('cimmi_wrap.cxx')
 
 cimmi_module = Extension('_cimmi',
                            sources=sources,
-                           extra_link_args=['-lfmt'],
+                           extra_link_args=['-lfmt', '-lgomp'],
                            extra_compile_args=['-std=c++20', '-fopenmp'],
                            )
 
