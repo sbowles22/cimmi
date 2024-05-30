@@ -27,6 +27,7 @@ CIMMI uses the rudy graph generator and the Gset for its testing. To generate th
         - [ ] GPU Acceleration (Spencer)
     - [X] Random Number Generation (Spencer)
     - [X] Euler Maruyama (Spencer)
+    - [ ] Add transfer function switching (?) 
     - [ ] Error Handling (?)
 - [ ] Graph Object 
     - [X] Initial Object (Spencer)
