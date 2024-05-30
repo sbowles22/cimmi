@@ -161,22 +161,22 @@ void Network::set_step_size(float h) {
 
 // Simulator Control Functions
 void Network::configure() {
-    printf("Configuring...\n");
+    INFO("Configuring network...");
     this -> resize(source->get_size());
     
     switch (problem)
     {
     case Problem::MAX_CUT:
-        printf("Mapping %p to %p...\n", source, this);
+        INFO("Mapping max cut {} to {}...", (void*) source, (void*) this);
         map_max_cut(*source, *this);
-        printf("Mapped %p to %p.\n", source, this);
+        INFO("Mapped max cut {} to {}.\n", (void*) source, (void*) this);
         break;
     
     default: break;
     }
 
     this -> restart();
-    printf("Configured.\n");
+    INFO("Configured network.\n");
 }
 
 void Network::restart() {

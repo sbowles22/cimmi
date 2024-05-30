@@ -12,7 +12,7 @@ cimmi::simulator::simulator(int x)
 
 cimmi::simulator::~simulator()
 {
-    std::cout << "goodbye!\n";
+    INFO("Simulator: goodbye!\n");
 }
 
 int cimmi::simulator::get_x() {

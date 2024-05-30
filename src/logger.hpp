@@ -24,6 +24,7 @@
 #endif
 #define STRINGIFY(X) #X
 
+// Log level macros :D
 #define FATAL(f, ...)   cimmi::logger::log(cimmi::logger::Level::Fatal,   f, ##__VA_ARGS__);
 #define ERROR(f, ...)   cimmi::logger::log(cimmi::logger::Level::Error,   f, ##__VA_ARGS__);
 #define WARNING(f, ...) cimmi::logger::log(cimmi::logger::Level::Warning, f, ##__VA_ARGS__);

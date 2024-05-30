@@ -30,7 +30,7 @@ short Graph::get_edge(int x, int y) {
 }
 
 Graph* Graph::read_from_file(const char* filename) {
-    cout << "Reading... " << filename << endl; 
+    INFO("Reading graph from {}... ", filename); 
     Graph* g;
     
     fstream f;
@@ -41,26 +41,24 @@ Graph* Graph::read_from_file(const char* filename) {
     short w;
 
     f >> nodes >> edge_num;
-    cout << nodes << endl;
+    INFO("Nodes: {}", nodes);
     g = new Graph(nodes);
-    cout << "Done Creating" << endl;
+    DEBUG("Graph object allocatied");
     for (int i = 0; i < nodes; i++) {
         for (int j = 0; j < nodes; j++) {
             g -> set_edge(i, j, 0);
         }
     }
-    cout << "Edges set to 0" << endl;
+    DEBUG("All Graph edges set to 0");
 
     for (int i = 0; i < edge_num; i++) {
         f >> x >> y >> w;
-        cout << "X: " << x << ", Y: " << y << ", W: " << w << endl;
+        // DEBUG("X: {}, Y: {}, W: {}", x, y, w);
         g -> set_edge(x - 1, y - 1, w);
         g -> set_edge(y - 1, x - 1, w);
     }
 
-    cout << "Starting Printing" << endl;
-    g -> print();
-    cout << "Done Printing" << endl;
+    INFO("Done reading graph from {}.", filename);
     return g;
 }
 

@@ -9,7 +9,7 @@ int main() {
     INFO("Start program.");
     cimmi::graph::Graph g;
     g = *cimmi::graph::Graph::read_from_file("scripts/rudy/test_graphs/complete_2.in");
-    g.print();
+    // g.print();
 
     cimmi::network::Network n;
     n.set_coupling_strength(1.1);
@@ -24,11 +24,11 @@ int main() {
     n.run(10);
 
     #pragma omp parallel for
-    for (int i = 0; i < 100; i++) {
+    for (int i = 0; i < 10; i++) {
         INFO("Logging event {}", i);
     }
 
-    n.disp();
+    // n.disp();
     INFO("End program.");
 
     // std::FILE* file = std::fopen("out.txt","w");
