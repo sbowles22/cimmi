@@ -26,5 +26,5 @@ wc:
 .PHONY: cpp_test
 cpp_test: build
 	$(MAKE) -C scripts/rudy test_graphs
-	g++ -g src/*.cpp -lfmt -std=c++20 -fopenmp -o main
-	./main
+	g++ -O3 src/*.cpp -lfmt -std=c++20 -fopenmp -o main
+	time ./main

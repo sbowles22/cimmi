@@ -83,22 +83,30 @@ void Network::disp() {
 void Network::kraymer_moyal() {
     pump_rate = this -> get_pump_rate();
 
-    for (int ix = 0; ix < size; ix++) {
-        dc_phase[ix] = 0.0;
-        ds_phase[ix] = 0.0;
-    }
+    // for (int ix = 0; ix < size; ix++) {
+    //     dc_phase[ix] = 0.0;
+    //     ds_phase[ix] = 0.0;
+    // }
 
-    // #pragma omp parallel for schedule(dynamic, 50)
+    // #pragma omp parallel for schedule(dynamic, 8)
+    // #pragma omp distribute parallel for simd
+    // #pragma omp parallel for
+    #pragma omp parallel for schedule(dynamic, 8)
     for (int ix = 0; ix < size; ix++) {
-        dc_phase[ix] += (-1 + pump_rate - (c_phase[ix]*c_phase[ix] + s_phase[ix]*s_phase[ix])) * c_phase[ix];
+        dc_phase[ix] = (-1 + pump_rate - (c_phase[ix]*c_phase[ix] + s_phase[ix]*s_phase[ix])) * c_phase[ix];
+        // #pragma omp parallel for reduction(+:dc_phase[ix])
         for (int iy = 0; iy < size; iy++) {
             dc_phase[ix] += (couplings)[ix][iy] * c_phase[iy];
         }
     }
 
-    // #pragma omp parallel for schedule(dynamic, 50)
+    // #pragma omp parallel for schedule(dynamic, 8)
+    // #pragma omp distribute parallel for simd
+    // #pragma omp parallel for
+    #pragma omp parallel for schedule(dynamic, 8)
     for (int ix = 0; ix < size; ix++) {
-        ds_phase[ix] += (-1 - pump_rate - (c_phase[ix]*c_phase[ix] + s_phase[ix]*s_phase[ix])) * s_phase[ix];
+        ds_phase[ix] = (-1 - pump_rate - (c_phase[ix]*c_phase[ix] + s_phase[ix]*s_phase[ix])) * s_phase[ix];
+        // #pragma omp parallel for reduction(+:ds_phase[ix])
         for (int iy = 0; iy < size; iy++) {
             ds_phase[ix] += (couplings)[ix][iy] * s_phase[iy];
         }

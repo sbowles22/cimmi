@@ -76,6 +76,7 @@ namespace cimmi::logger
         fmt::print(log_file, "[{}] ", levels[(int) s]);
         fmt::print(log_file, format, std::forward<Args>(args)...);
         fmt::print(log_file, "\n");
+        fflush(log_file);
         omp_unset_lock(&writelock);
     }
 } // namespace cimmi::logger
