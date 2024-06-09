@@ -103,13 +103,14 @@ void Network::kraymer_moyal() {
     // #pragma omp parallel for schedule(dynamic, 8)
     // #pragma omp distribute parallel for simd
     // #pragma omp parallel for
-    #pragma omp parallel for schedule(dynamic, 8)
+    // #pragma omp parallel for schedule(dynamic, 8)
     for (int ix = 0; ix < size; ix++) {
         ds_phase[ix] = (-1 - pump_rate - (c_phase[ix]*c_phase[ix] + s_phase[ix]*s_phase[ix])) * s_phase[ix];
         // #pragma omp parallel for reduction(+:ds_phase[ix])
-        for (int iy = 0; iy < size; iy++) {
-            ds_phase[ix] += (couplings)[ix][iy] * s_phase[iy];
-        }
+        // I have no idea if this next part is necessary!
+        // for (int iy = 0; iy < size; iy++) {
+        //     ds_phase[ix] += (couplings)[ix][iy] * s_phase[iy];
+        // }
     }
 }
 

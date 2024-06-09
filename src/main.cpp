@@ -22,7 +22,7 @@ int main() {
     n.set_coupling_strength(1.1);
     n.set_pump_rate(0.9);
     n.set_noise_magnitude(0.01);
-    DEBUG("Noise Magnitude: {}", n.get_noise_magnitude())
+    DEBUG("Noise Magnitude: {}", n.get_noise_magnitude());
     n.set_problem(cimmi::network::Problem::MAX_CUT);
     n.set_source(&g);
     n.configure();
