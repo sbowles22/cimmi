@@ -40,3 +40,4 @@ scripts/rudy/rudy
 scripts/rudy/rudy.c
 scripts/rudy/graphs/*
 .vscode/settings.json
+src/main.cpp
