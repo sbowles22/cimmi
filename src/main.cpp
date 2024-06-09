@@ -33,10 +33,10 @@ int main() {
         n.restart();
         for (float t = 0.0; t <= 10; t += 0.10) {
             n.run(t);
-            // std::vector<float> state = n.get_state();
-            // std::vector<int> soln = cimmi::network::soln_max_cut(state);
-            // int score = cimmi::graph::eval_max_cut(soln, g);
-            // INFO("Score @({:4.1f}): {:5d}", t, score);
+            std::vector<float> state = n.get_state();
+            std::vector<int> soln = cimmi::network::soln_max_cut(state);
+            int score = cimmi::graph::eval_max_cut(soln, g);
+            INFO("Score @({:4.1f}): {:5d}", t, score);
         }
         std::vector<float> state = n.get_state();
         std::vector<int> soln = cimmi::network::soln_max_cut(state);
