@@ -5,16 +5,16 @@
 
 #include "cimmi.hpp"
 
-cimmi::simulator::simulator(int x)
+cimmi::Simulator::Simulator(int x)
 {
     num = x; 
 }
 
-cimmi::simulator::~simulator()
+cimmi::Simulator::~Simulator()
 {
     INFO("Simulator: goodbye!\n");
 }
 
-int cimmi::simulator::get_x() {
+int cimmi::Simulator::get_x() {
     return num;
 }

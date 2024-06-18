@@ -4,18 +4,20 @@
 
 #include <iostream>
 #include <iomanip>
+#include <list>
+#include "network.hpp"
 #include "utils.hpp"
 
 namespace cimmi
 {
     
-class simulator
+class Simulator
 {
 private:
     int num;
 public:
-    simulator(int x);
-    ~simulator();
+    Simulator(int x);
+    ~Simulator();
     int get_x();
 };
 
