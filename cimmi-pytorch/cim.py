@@ -1,4 +1,5 @@
 
+
 from ising import Ising
 # from typing import Callable
 from solvers import Solver, Standard

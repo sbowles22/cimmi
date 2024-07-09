@@ -57,14 +57,16 @@ class SG3(Solver):
         S2.append(my)
         
         while unallocated:
+            # print(len(unallocated))
             max_score_spin = unallocated[0]
-            max_score = float('-inf')
+            max_score = float('inf')
             for spin in unallocated:
                 sum_1 = sum((model.couplings[spin][ix] for ix in S1))
                 sum_2 = sum((model.couplings[spin][ix] for ix in S2))
                 
-                score = max(sum_1, sum_2)
-                if score > max_score:
+                # score = min(sum_1, sum_2)
+                score = -abs(sum_1 - sum_2)
+                if score < max_score:
                     max_score_spin = spin
                     max_score = score
             
@@ -72,7 +74,7 @@ class SG3(Solver):
             sum_2 = sum((model.couplings[max_score_spin][ix] for ix in S2))
             
             unallocated.remove(max_score_spin)
-            if sum_1 > sum_2:
+            if sum_1 < sum_2:
                 S2.append(max_score_spin)
             else:
                 S1.append(max_score_spin)

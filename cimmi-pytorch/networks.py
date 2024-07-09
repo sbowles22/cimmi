@@ -24,14 +24,14 @@ class Control(Network):
         self.transfer = transfer(**kwargs)
     
     def solve(self, model: Ising, 
-              steps = 10000, 
+              steps = 20000, 
               step_size = 0.01,
-              noise_magnitude = 0.001, 
+              noise_magnitude = 0.000, 
               **kwargs):
         for step in range(steps):
             grad = self.transfer.grad(model, step_size=step_size, time=step*step_size)
-            if not step % 100:
-                print(grad)
+            # if not step % 100:
+            #     print(grad)
             model.state += grad * step_size + \
                            noise_magnitude * torch.normal(torch.zeros_like(model.state), np.sqrt(step_size)*torch.ones_like(model.state))
             
