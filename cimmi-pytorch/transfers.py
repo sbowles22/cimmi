@@ -24,7 +24,7 @@ class DOPO(Transfer):
         self.pump_schedule = pump_schedule
         self.s_phase = None
     
-    def grad(self, model: Ising, step_size: float = 0, time=0) -> array:
+    def grad(self, model: Ising, step_size: float = 0, time=0, **kwargs) -> array:
         if self.s_phase is None:
             self.s_phase = torch.zeros_like(model.state)
         dcdt = (-1 + self.pump_schedule(time) - (model.state**2 + self.s_phase**2)) * model.state
@@ -35,3 +35,21 @@ class DOPO(Transfer):
         self.s_phase += dsdt * step_size
         
         return dcdt #, dsdt
+    
+class Clipped(Transfer):
+    def __init__(self, 
+                 pump_schedule: Callable [[float], float] = schedule_constant(),
+                 **kwargs) -> None:
+        super().__init__(**kwargs)
+        self.pump_schedule = pump_schedule
+    
+    def grad(self, model: Ising, time=0, **kwargs) -> array:
+        
+        clip = lambda x: -x * (-1 + self.pump_schedule(time)) if abs(x) < 1 else x
+        
+        dcdt = -model.state
+        for idx, c in enumerate(dcdt):
+            dcdt[idx] = clip(c)
+        dcdt += model.state @ model.couplings
+        
+        return dcdt

@@ -41,3 +41,6 @@ scripts/rudy/rudy.c
 scripts/rudy/graphs/*
 .vscode/settings.json
 src/main.cpp
+
+# Temp Image Storage (Spencer)
+good_ims/*

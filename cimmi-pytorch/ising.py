@@ -17,6 +17,9 @@ class Ising:
         self.state = init_state if init_state else torch.zeros(couplings.size(dim=0))
         self.size = self.state.size(dim=0)
         self.Result.state_history = []
+        
+    def set_state(self, state: tensor = None):
+        self.state = state if state else torch.zeros(self.couplings.size(dim=0))
                 
     class Result(dict):
         """

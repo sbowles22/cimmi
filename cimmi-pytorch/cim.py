@@ -12,6 +12,7 @@ class CIM:
     def __init__(self,
         weight_matrix: np.array, *,
         solver: Solver = Standard,
+        init_state = None,
         **kwargs,
         # pump_schedule: Callable[[float], float] = schedule_constant(1.1),
         # coupling_coefficient: float = 1,
@@ -19,9 +20,12 @@ class CIM:
     ) -> None:
 
         # model = Ising(weight_matrix * coupling_coefficient)
-        self.model = Ising(weight_matrix)
+        self.saved_init_state = init_state
+        self.model = Ising(weight_matrix, init_state=self.saved_init_state)
         self.solver = solver(**kwargs)
 
     def solve(self, **kwargs):
+        self.model.set_state(self.saved_init_state)
+        self.model.Result.state_history = []
         self.solver.solve(self.model, **kwargs)
     
