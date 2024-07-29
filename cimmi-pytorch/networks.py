@@ -8,19 +8,20 @@ Examples of Modifications include:
     Adiabatic Hamiltonians
 """
 
-from transfers import Transfer, DOPO
+from transfers import Transfer, TraditionalDOPO
 from ising import Ising
 from torch import tensor
 import torch
 from numpy import array
 import numpy as np
+from graphs import eval_max_cut
 
 class Network:
     def solve(model: Ising) -> tensor:
         return None
 
 class Control(Network):
-    def __init__(self, transfer: Transfer = DOPO, **kwargs):
+    def __init__(self, transfer: Transfer = TraditionalDOPO, **kwargs):
         self.transfer = transfer(**kwargs)
     
     def solve(self, model: Ising, 
@@ -35,4 +36,10 @@ class Control(Network):
             model.state += grad * step_size + \
                            noise_magnitude * torch.normal(torch.zeros_like(model.state), np.sqrt(step_size)*torch.ones_like(model.state))
             
-            model.Result.state_history.append(model.state.tolist())
+            energy = eval_max_cut(model.state.tolist(), model.couplings)
+            
+            model.result.state_history.append(model.state.tolist())
+            model.result.energy_history.append(energy)
+            if energy < model.result.minimum_energy:
+                model.result.minimum_energy = energy
+                model.result.minimum_energy_state = model.state.tolist()

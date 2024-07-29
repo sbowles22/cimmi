@@ -26,6 +26,9 @@ class CIM:
 
     def solve(self, **kwargs):
         self.model.set_state(self.saved_init_state)
-        self.model.Result.state_history = []
+        self.model.result.state_history = []
+        self.model.result.energy_history = []
+        self.model.result.minimum_energy = float('inf')
+        self.model.result.minimum_energy_state = None
         self.solver.solve(self.model, **kwargs)
     

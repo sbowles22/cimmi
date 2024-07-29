@@ -5,7 +5,7 @@ This includes both standard methods (DOPO Network) and non-standard (Sahni-Gonza
 """
 
 from dataclasses import dataclass
-from transfers import DOPO
+from transfers import TraditionalDOPO
 from networks import Network, Control
 from itertools import product
 

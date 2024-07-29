@@ -22,5 +22,5 @@ print(foo.model.state)
 print("DOPO:", eval_max_cut(foo.model.state.tolist(), J))
 
 fig, ax = plt.subplots()
-ax.plot(foo.model.Result.state_history)
+ax.plot(foo.model.result.state_history)
 fig.savefig('cim.png')
